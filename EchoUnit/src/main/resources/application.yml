@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: echo-unit
+
+server:
+  port: ${SERVER_PORT:8080}
+
+echounit:
+  registry-url: http://host.docker.internal:8080/registry
