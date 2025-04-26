@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: balanceron
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+server:
+  port: 8080
+
+balanceron:
+  loadbalancing:
+    defaultAlgorithm: Round Robin

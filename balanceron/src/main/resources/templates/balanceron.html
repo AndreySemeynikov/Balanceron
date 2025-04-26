@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Balanceron - Load Balancer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .card { border: 1px solid #ddd; border-radius: 4px; padding: 15px; margin-bottom: 20px; }
+        .header { background-color: #f5f5f5; padding: 10px; margin-bottom: 15px; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f5f5f5; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .form-group { margin-bottom: 15px; }
+        select, button { padding: 8px; }
+        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        .current-algorithm { background-color: #e7f3fe; border-left: 6px solid #2196F3; padding: 10px; margin-bottom: 15px; }
+        .algorithm-description { font-style: italic; color: #666; margin-top: 5px; }
+        .success-message { background-color: #dff0d8; color: #3c763d; padding: 10px; border-radius: 4px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Balanceron - Load Balancer</h1>
+    </div>
+
+    <div class="card">
+        <h2>Load Balancing Algorithm</h2>
+
+        <!-- Отображение текущего алгоритма -->
+        <div class="current-algorithm">
+            <h3>Current Algorithm: <span th:text="${currentAlgorithm}">Round Robin</span></h3>
+            <p class="algorithm-description" th:text="${currentAlgorithmDescription}">Algorithm description goes here</p>
+        </div>
+
+        <!-- Сообщение об успешном изменении алгоритма -->
+        <div class="success-message" th:if="${successMessage}" th:text="${successMessage}"></div>
+
+        <!-- Форма изменения алгоритма -->
+        <form th:action="@{/ui/dashboard/algorithm}" method="post">
+            <div class="form-group">
+                <label for="algorithm">Change Algorithm: </label>
+                <select class="form-control" id="algorithm" name="algorithm">
+                    <option th:each="entry : ${algorithms}"
+                            th:value="${entry.key}"
+                            th:text="${entry.key}"
+                            th:selected="${entry.key == currentAlgorithm}">
+                        Algorithm
+                    </option>
+                </select>
+            </div>
+            <button type="submit">Apply Changes</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Active Service Instances</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Service name</th>
+                <th>Host</th>
+                <th>Port</th>
+                <th>Weight</th>
+                <th>Active Connections</th>
+                <th>Last Heartbeat</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="instance : ${instances}">
+                <td th:text="${instance.id}"></td>
+                <td th:text="${instance.serviceName}"></td>
+                <td th:text="${instance.host}"></td>
+                <td th:text="${instance.port}"></td>
+                <td th:text="${instance.weight}"></td>
+                <td th:text="${instance.activeConnections}"></td>
+                <td th:text="${#temporals.format(instance.lastHeartbeat, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            <tr th:if="${instances.isEmpty()}">
+                <td colspan="7" class="text-center">No active instances</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Автоматическое обновление страницы каждые 5 секунд
+    setTimeout(function() {
+        location.reload();
+    }, 5000);
+</script>
+</body>
+</html>
