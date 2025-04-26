@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: balanceron-registry
-
-server:
-  port: 8080
