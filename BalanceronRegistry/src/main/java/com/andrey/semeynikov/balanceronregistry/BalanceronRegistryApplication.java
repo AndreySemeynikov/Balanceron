@@ -8,8 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class BalanceronRegistryApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(BalanceronRegistryApplication.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(BalanceronRegistryApplication.class, args);
+  }
 }
