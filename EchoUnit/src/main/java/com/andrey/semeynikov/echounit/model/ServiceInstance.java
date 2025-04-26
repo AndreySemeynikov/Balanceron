@@ -1,12 +1,11 @@
 package com.andrey.semeynikov.echounit.model;
 
+import static lombok.AccessLevel.PRIVATE;
+
 import jakarta.validation.constraints.NotNull;
+import java.time.Instant;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-
-import java.time.Instant;
-
-import static lombok.AccessLevel.PRIVATE;
 
 @Data
 @FieldDefaults(level = PRIVATE)
