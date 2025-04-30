@@ -21,3 +21,7 @@ management:
   endpoint:
     prometheus:
       access: unrestricted
+
+logging:
+  level:
+    com.andrey.semeynikov.balanceron: DEBUG
