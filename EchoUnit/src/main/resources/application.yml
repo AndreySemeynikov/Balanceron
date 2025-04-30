@@ -7,3 +7,12 @@ server:
 
 echounit:
   registry-url: http://host.docker.internal:8080/registry
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  endpoint:
+    prometheus:
+      access: unrestricted

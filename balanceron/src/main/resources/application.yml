@@ -12,3 +12,12 @@ server:
 balanceron:
   loadbalancing:
     defaultAlgorithm: Round Robin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  endpoint:
+    prometheus:
+      access: unrestricted
