@@ -5,9 +5,9 @@ scrape_configs:
   - job_name: 'balancer'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['registry:8080']
+      - targets: ['host.docker.internal:8080']
 
   - job_name: 'echo_units'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['echo-unit-1:8083', 'echo-unit-2:8084', 'echo-unit-3:8085']
+      - targets: ['echo-unit-1:8083', 'echo-unit-2:8084', 'echo-unit-3:8085', 'echo-unit-4:8086']

@@ -32,7 +32,7 @@ services:
     environment:
       - SERVER_PORT=8083
       - INSTANCE_NAME=echo-unit-1
-      - INSTANCE_WEIGHT=1
+      - INSTANCE_WEIGHT=40
 
   echo-unit-2:
     image: echo-unit:latest
@@ -41,7 +41,7 @@ services:
     environment:
       - SERVER_PORT=8084
       - INSTANCE_NAME=echo-unit-2
-      - INSTANCE_WEIGHT=10
+      - INSTANCE_WEIGHT=30
 
   echo-unit-3:
     image: echo-unit:latest
@@ -50,7 +50,16 @@ services:
     environment:
       - SERVER_PORT=8085
       - INSTANCE_NAME=echo-unit-3
-      - INSTANCE_WEIGHT=40
+      - INSTANCE_WEIGHT=20
+
+  echo-unit-4:
+    image: echo-unit:latest
+    ports:
+      - "8086:8086"
+    environment:
+      - SERVER_PORT=8086
+      - INSTANCE_NAME=echo-unit-4
+      - INSTANCE_WEIGHT=10
 
 volumes:
   redis-data:

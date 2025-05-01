@@ -82,6 +82,7 @@ public class AlgorithmManager {
   public boolean setCurrentAlgorithm(String algorithmName) {
     if (algorithmMap.containsKey(algorithmName)) {
       currentAlgorithmName = algorithmName;
+      saveCurrentAlgorithmToRedis();
       log.info("Switched to load balancing algorithm: {}", algorithmName);
       return true;
     } else {
